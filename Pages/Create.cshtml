@@ -1,0 +1,54 @@
+﻿@page
+@model TODOWebApplication.Pages.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>TodoItem</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TodoItem.Title" class="control-label"></label>
+                <input asp-for="TodoItem.Title" class="form-control" />
+                <span asp-validation-for="TodoItem.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TodoItem.Description" class="control-label"></label>
+                <input asp-for="TodoItem.Description" class="form-control" />
+                <span asp-validation-for="TodoItem.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TodoItem.AddedDate" class="control-label"></label>
+                <input asp-for="TodoItem.AddedDate" class="form-control" />
+                <span asp-validation-for="TodoItem.AddedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TodoItem.ExpirationDate" class="control-label"></label>
+                <input asp-for="TodoItem.ExpirationDate" class="form-control" />
+                <span asp-validation-for="TodoItem.ExpirationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TodoItem.Status" class="control-label"></label>
+                <select asp-for="TodoItem.Status" class="form-control" asp-items="Model.States"></select>
+                <span asp-validation-for="TodoItem.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index" class="btn btn-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
