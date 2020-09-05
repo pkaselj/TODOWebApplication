@@ -39,7 +39,7 @@ namespace TODOWebApplication.Pages
                 return NotFound();
             }
 
-            States = new SelectList(ItemStateHelper.GetStateNames<ItemStatus>());
+            States = new SelectList(ItemState.GetStateNames());
             return Page();
         }
 

@@ -22,7 +22,7 @@ namespace TODOWebApplication.Pages
 
         public IActionResult OnGet()
         {
-            States = new SelectList(ItemStateHelper.GetStateNames<ItemStatus>());
+            States = new SelectList(ItemState.GetStateNames());
             return Page();
         }
 
