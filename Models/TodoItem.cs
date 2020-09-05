@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TODOHelperLibrary;
+using TODOWebApplication.Interfaces;
 
 namespace TODOWebApplication.Models
 {
@@ -11,13 +12,11 @@ namespace TODOWebApplication.Models
         public int ID { get; set; }
 
         [Required]
-        [RegularExpression(@"^[A-Z]+[a-zA-Z0-9\s]*$", ErrorMessage = "The title contains " +
-            "invalid symbols and/or isn't capitalised.")]
+        [RegularExpression(@"^[a-zA-Z0-9\s\.,'""\*]*$", ErrorMessage = "The title contains invalid symbols")]
         [StringLength(20)]
         public string Title { get; set; }
 
-        [RegularExpression(@"^[A-Z]+[a-zA-Z0-9\s]*$", ErrorMessage = "The description contains " +
-            "invalid symbols and/or isn't capitalised.")]
+        [RegularExpression(@"^[a-zA-Z0-9\s/.,'""\*]*$", ErrorMessage = "The title contains invalid symbols")]
         [StringLength(200)]
         public string Description { get; set; }
 

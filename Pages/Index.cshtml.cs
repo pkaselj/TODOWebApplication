@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using TODOWebApplication.Data;
+using TODOWebApplication.Interfaces;
 using TODOWebApplication.Models;
 
 namespace TODOWebApplication.Pages
@@ -13,11 +14,21 @@ namespace TODOWebApplication.Pages
     public class IndexModel : PageModel
     {
         private readonly TODOWebApplication.Data.TODOWebApplicationContext _context;
+        public Interfaces.IProgressChecker _progress { get; set; }
 
         public IndexModel(TODOWebApplication.Data.TODOWebApplicationContext context)
         {
             _context = context;
+            _progress = new ProgressChecker(context);
         }
+
+        // #TODO Fix DI
+
+        /*public IndexModel(TODOWebApplication.Data.TODOWebApplicationContext context)
+            : this(context, new ProgressChecker(context))
+        {
+        }*/
+
 
         public IList<TodoItem> Tasks { get; set; }
 
@@ -36,6 +47,14 @@ namespace TODOWebApplication.Pages
             }
 
             Tasks = await tasks.ToListAsync();
+
+            ExpirationChecker expirationChecker = new ExpirationChecker((List<TodoItem>)Tasks);
+            expirationChecker.Expire();
+
+            _ = await _context.SaveChangesAsync();
+
+            _progress.Count();
+
         }
     }
 }
