@@ -10,22 +10,24 @@
     }
 }
 
+<style>
+    @@media only screen and (max-width: 600px){
+        .visible-sm {
+            display: none;
+        }
+    } 
+    
+
+</style>
+
 <h1>Index</h1>
-
-<br>
-<br>
-
-<p>
-    <a asp-page="Create" class="btn btn-primary">Add Item</a>
-</p>
-
 
 <form>
     <div class="input-group">
         <input type="text" asp-for="SearchString" placeholder="Search" />
         <div class="input-group-append">
             <button type="submit" class="btn btn-success">
-                <i  class="fas fa-search"></i>
+                <i class="fas fa-search"></i>
             </button>
 
             <a type="button" asp-page="./Index" class="btn btn-danger">
@@ -34,9 +36,10 @@
         </div>
     </div>
 </form>
-
-<br>
-<br>
+<p class="my-2">
+    <a asp-page="Create" class="btn btn-primary">Add Item</a>
+</p>
+    
 
 <div class="container-fluid">
     <div class="sticky-top">
@@ -55,10 +58,10 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Tasks[0].Description)
                     </th>
-                    <th>
+                    <th class="visible-sm">
                         @Html.DisplayNameFor(model => model.Tasks[0].AddedDate)
                     </th>
-                    <th>
+                    <th class="visible-sm">
                         @Html.DisplayNameFor(model => model.Tasks[0].ExpirationDate)
                     </th>
                     <th>
@@ -72,27 +75,27 @@
         </table>
 
         <!--
-    <div class="thead-dark">
-        <div>
-            @Html.DisplayNameFor(model => model.Tasks[0].Title)
+        <div class="thead-dark">
+            <div>
+                @Html.DisplayNameFor(model => model.Tasks[0].Title)
+            </div>
+            <div>
+                @Html.DisplayNameFor(model => model.Tasks[0].Description)
+            </div>
+            <div class="text-right">
+                @Html.DisplayNameFor(model => model.Tasks[0].AddedDate)
+            </div>
+            <div class="text-center">
+                @Html.DisplayNameFor(model => model.Tasks[0].ExpirationDate)
+            </div>
+            <div class="text-justify">
+                @Html.DisplayNameFor(model => model.Tasks[0].Status)
+            </div>
+            <div>
+                Actions
+            </div>
         </div>
-        <div>
-            @Html.DisplayNameFor(model => model.Tasks[0].Description)
-        </div>
-        <div class="text-right">
-            @Html.DisplayNameFor(model => model.Tasks[0].AddedDate)
-        </div>
-        <div class="text-center">
-            @Html.DisplayNameFor(model => model.Tasks[0].ExpirationDate)
-        </div>
-        <div class="text-justify">
-            @Html.DisplayNameFor(model => model.Tasks[0].Status)
-        </div>
-        <div>
-            Actions
-        </div>
-    </div>
-            -->
+                -->
 
     </div>
     <table class="table table-striped">
@@ -106,13 +109,13 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Description)
                     </td>
-                    <td >
+                    <td class="visible-sm">
                         @Html.DisplayFor(modelItem => item.AddedDate)
                     </td>
-                    <td >
+                    <td class="visible-sm">
                         @Html.DisplayFor(modelItem => item.ExpirationDate)
                     </td>
-                    <td >
+                    <td>
                         @Html.DisplayFor(modelItem => item.Status)
                     </td>
                     <td>
@@ -132,7 +135,7 @@
     </table>
 </div>
 
-@section Scripts{ 
+@section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
             $('td').addClass('align-middle')
